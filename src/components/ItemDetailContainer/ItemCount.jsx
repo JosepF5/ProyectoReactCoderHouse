@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function ItemCount({initial,max}) {
+function ItemCount({initial,max,onAdd}) {
     const [value, setValue] = useState(initial);
 
     const handleSuma = () => {
@@ -16,6 +16,7 @@ function ItemCount({initial,max}) {
                 <h1>{value}</h1>
                 <button onClick={handleSuma}>+</button>
                 <button onClick={handleResta}>-</button>
+                <button disabled={value===0} onClick={()=> onAdd(value)}>Agregar al carrito</button>
             </div>
         </>
     )

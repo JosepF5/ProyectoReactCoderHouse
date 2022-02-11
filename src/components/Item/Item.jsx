@@ -1,28 +1,35 @@
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react'
+import { Col } from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import {Link} from 'react-router-dom'
+import './Item.css';
 
 function Item({prod}) {
     
     return (
-        <div 
-            key={prod.id}
-            className='col-md-4'
-        >                        
-            <div className="card w-100 mt-5" >
-                <div className="card-header">
-                    {`${prod.name} - ${prod.categoria}`}
-                </div>
-                <div className="card-body">
-                    <img src={prod.foto} alt='' className='w-50' />
-                    {prod.price}                                                            
-                </div>
-                <div className="card-footer">  
-                <button className="btn btn-outline-primary btn-block">
-                    detalle del producto
-                </button>                                              
-                                                                                
-                </div>
-            </div>
+        <Col>
+        <div key={prod.id}>
+            <Card style={{ width: '18rem', margin:'auto' }}>
+                 <Card.Img className="imgSize" variant="top" src={prod.foto} />
+                 <Card.Body>
+                       <Card.Title>{prod.name} - {prod.categoria}</Card.Title>
+                      <Card.Text>
+                          <Link to={`/detalle/${prod.id}`}>
+                          <button className="botonDetalle">Detalle de producto</button>
+                          </Link>
+                      </Card.Text>
+                  </Card.Body>
+                 <ListGroup className="list-group-flush">
+                     <ListGroupItem>$ {prod.price}</ListGroupItem>
+                                                                                   
+                 </ListGroup>
+                 
+            </Card>
         </div>
+        </Col>
     )
 }
 
